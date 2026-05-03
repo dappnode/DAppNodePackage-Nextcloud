@@ -1,0 +1,10 @@
+version: "2"
+fields:
+  - id: volumeMountpoint
+    target:
+      type: allNamedVolumesMountpoint
+    title: Storage location
+    description: >-
+      Choose where to store all Nextcloud data (files, database, and cache).
+      By default, data is stored on the main disk. If you have a secondary
+      drive attached to your DAppNode, you can select it here.

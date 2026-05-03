@@ -1,0 +1,26 @@
+{
+  "name": "nextcloud.dnp.dappnode.eth",
+  "version": "0.1.0",
+  "upstream": [
+    {
+      "repo": "nextcloud/server",
+      "version": "v33.0.3",
+      "arg": "UPSTREAM_VERSION"
+    }
+  ],
+  "shortDescription": "Self-hosted cloud storage and collaboration platform",
+  "description": "Nextcloud gives you access to all your files wherever you are. Run your own cloud storage, calendar, contacts, and office suite on your DAppNode — fully self-hosted and private.\n\nThis package includes Nextcloud with MariaDB and Redis for optimal performance.\n\n**Features:**\n- File sync and sharing across all your devices\n- Calendar, contacts, and task management\n- Collaborative document editing\n- Photo and media management\n- MariaDB database for reliability\n- Redis caching for fast performance\n\n**First run:** Visit the Nextcloud UI link below to complete the setup wizard and create your admin account.\n\nAccess Nextcloud at http://nextcloud.dappnode:8034",
+  "type": "service",
+  "mainService": "nextcloud",
+  "author": "DAppNode Association <admin@dappnode.io> (https://github.com/dappnode)",
+  "license": "AGPL-3.0",
+  "categories": ["Storage", "Communications"],
+  "links": {
+    "ui": "http://nextcloud.dappnode:8034",
+    "homepage": "https://nextcloud.com"
+  },
+  "architectures": ["linux/amd64"],
+  "requirements": {
+    "minimumDiskSpace": "2GB"
+  }
+}
