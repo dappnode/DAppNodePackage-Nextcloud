@@ -4,7 +4,7 @@ services:
     build:
       context: nextcloud
       args:
-        UPSTREAM_VERSION: 33.0.3-apache
+        UPSTREAM_VERSION: v34.0.0beta2
     container_name: nextcloud.nextcloud.dnp.dappnode.eth
     volumes:
       - nextcloud-data:/var/www/html
@@ -13,35 +13,35 @@ services:
       - db
       - redis
     environment:
-      MYSQL_DATABASE: "nextcloud"
-      MYSQL_USER: "nextcloud"
-      MYSQL_PASSWORD: "nextcloud_dappnode_pass"
-      MYSQL_HOST: "db.nextcloud.dnp.dappnode.eth"
-      REDIS_HOST: "redis.nextcloud.dnp.dappnode.eth"
+      MYSQL_DATABASE: nextcloud
+      MYSQL_USER: nextcloud
+      MYSQL_PASSWORD: nextcloud_dappnode_pass
+      MYSQL_HOST: db.nextcloud.dnp.dappnode.eth
+      REDIS_HOST: redis.nextcloud.dnp.dappnode.eth
       REDIS_HOST_PORT: "6379"
       APACHE_LISTEN_PORT: "8034"
       APACHE_PORT: "8034"
-      NEXTCLOUD_TRUSTED_DOMAINS: "nextcloud.dappnode"
-      OVERWRITEPROTOCOL: "http"
+      NEXTCLOUD_TRUSTED_DOMAINS: nextcloud.dappnode
+      OVERWRITEPROTOCOL: http
   db:
     build:
       context: db
       args:
-        UPSTREAM_VERSION: "11"
+        UPSTREAM_VERSION: v34.0.0beta2
     container_name: db.nextcloud.dnp.dappnode.eth
     volumes:
       - db-data:/var/lib/mysql
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: "nextcloud_root_dappnode_pass"
-      MYSQL_DATABASE: "nextcloud"
-      MYSQL_USER: "nextcloud"
-      MYSQL_PASSWORD: "nextcloud_dappnode_pass"
+      MYSQL_ROOT_PASSWORD: nextcloud_root_dappnode_pass
+      MYSQL_DATABASE: nextcloud
+      MYSQL_USER: nextcloud
+      MYSQL_PASSWORD: nextcloud_dappnode_pass
   redis:
     build:
       context: redis
       args:
-        UPSTREAM_VERSION: 7-alpine
+        UPSTREAM_VERSION: v34.0.0beta2
     container_name: redis.nextcloud.dnp.dappnode.eth
     volumes:
       - redis-data:/data
