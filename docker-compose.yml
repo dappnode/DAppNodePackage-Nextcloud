@@ -4,7 +4,7 @@ services:
     build:
       context: nextcloud
       args:
-        UPSTREAM_VERSION: v34.0.0beta5
+        UPSTREAM_VERSION: v34.0.0rc1
     container_name: nextcloud.nextcloud.dnp.dappnode.eth
     volumes:
       - nextcloud-data:/var/www/html
@@ -27,7 +27,7 @@ services:
     build:
       context: db
       args:
-        UPSTREAM_VERSION: v34.0.0beta5
+        UPSTREAM_VERSION: v34.0.0rc1
     container_name: db.nextcloud.dnp.dappnode.eth
     volumes:
       - db-data:/var/lib/mysql
@@ -41,7 +41,7 @@ services:
     build:
       context: redis
       args:
-        UPSTREAM_VERSION: v34.0.0beta5
+        UPSTREAM_VERSION: v34.0.0rc1
     container_name: redis.nextcloud.dnp.dappnode.eth
     volumes:
       - redis-data:/data
