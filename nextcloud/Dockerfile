@@ -1,5 +1,6 @@
 ARG UPSTREAM_VERSION
-FROM nextcloud:${UPSTREAM_VERSION}
+ARG VERSION=${UPSTREAM_VERSION#v}
+FROM nextcloud:${VERSION}-apache
 
 # Configure Apache to listen on port 8034 instead of 80
 RUN sed -i 's/Listen 80/Listen 8034/' /etc/apache2/ports.conf && \
