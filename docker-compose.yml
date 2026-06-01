@@ -4,7 +4,7 @@ services:
     build:
       context: nextcloud
       args:
-        UPSTREAM_VERSION: v33.0.3
+        UPSTREAM_VERSION: v33.0.5rc1
     container_name: nextcloud.nextcloud.dnp.dappnode.eth
     volumes:
       - nextcloud-data:/var/www/html
