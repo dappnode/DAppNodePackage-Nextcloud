@@ -4,7 +4,7 @@
   "upstream": [
     {
       "repo": "nextcloud/server",
-      "version": "v33.0.5",
+      "version": "v34.0.0rc5",
       "arg": "UPSTREAM_VERSION"
     }
   ],
