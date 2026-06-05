@@ -1,26 +1,31 @@
 {
-  "name": "nextcloud.dnp.dappnode.eth",
-  "version": "0.1.0",
-  "upstream": [
-    {
-      "repo": "nextcloud/server",
-      "version": "v33.0.5",
-      "arg": "UPSTREAM_VERSION"
-    }
+  "architectures": [
+    "linux/amd64"
   ],
-  "shortDescription": "Self-hosted cloud storage and collaboration platform",
-  "description": "Nextcloud gives you access to all your files wherever you are. Run your own cloud storage, calendar, contacts, and office suite on your DAppNode — fully self-hosted and private.\n\nThis package includes Nextcloud with MariaDB and Redis for optimal performance.\n\n**Features:**\n- File sync and sharing across all your devices\n- Calendar, contacts, and task management\n- Collaborative document editing\n- Photo and media management\n- MariaDB database for reliability\n- Redis caching for fast performance\n\n**First run:** Visit the Nextcloud UI link below to complete the setup wizard and create your admin account.\n\nAccess Nextcloud at http://nextcloud.dappnode:8034",
-  "type": "service",
-  "mainService": "nextcloud",
   "author": "Chuy García <chuy@dappnode.io> (https://github.com/dappnode)",
+  "categories": [
+    "Storage",
+    "Communications"
+  ],
+  "description": "Nextcloud gives you access to all your files wherever you are. Run your own cloud storage, calendar, contacts, and office suite on your DAppNode — fully self-hosted and private.\n\nThis package includes Nextcloud with MariaDB and Redis for optimal performance.\n\n**Features:**\n- File sync and sharing across all your devices\n- Calendar, contacts, and task management\n- Collaborative document editing\n- Photo and media management\n- MariaDB database for reliability\n- Redis caching for fast performance\n\n**First run:** Visit the Nextcloud UI link below to complete the setup wizard and create your admin account.\n\nAccess Nextcloud at http://nextcloud.dappnode:8034",
   "license": "AGPL-3.0",
-  "categories": ["Storage", "Communications"],
   "links": {
-    "ui": "http://nextcloud.dappnode:8034",
-    "homepage": "https://nextcloud.com"
+    "homepage": "https://nextcloud.com",
+    "ui": "http://nextcloud.dappnode:8034"
   },
-  "architectures": ["linux/amd64"],
+  "mainService": "nextcloud",
+  "name": "nextcloud.dnp.dappnode.eth",
   "requirements": {
     "minimumDiskSpace": "2GB"
-  }
+  },
+  "shortDescription": "Self-hosted cloud storage and collaboration platform",
+  "type": "service",
+  "upstream": [
+    {
+      "arg": "UPSTREAM_VERSION",
+      "repo": "nextcloud/server",
+      "version": "v32.0.11"
+    }
+  ],
+  "version": "0.1.1"
 }
