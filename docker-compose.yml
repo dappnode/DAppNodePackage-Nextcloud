@@ -5,7 +5,7 @@ services:
       context: nextcloud
       args:
         UPSTREAM_VERSION: v34.0.0
-    container_name: nextcloud.nextcloud.dnp.dappnode.eth
+    container_name: nextcloud.nextcloud.public.dappnode.eth
     volumes:
       - nextcloud-data:/var/www/html
     restart: unless-stopped
@@ -16,8 +16,8 @@ services:
       MYSQL_DATABASE: nextcloud
       MYSQL_USER: nextcloud
       MYSQL_PASSWORD: nextcloud_dappnode_pass
-      MYSQL_HOST: DAppNodePackage-db.nextcloud.dnp.dappnode.eth
-      REDIS_HOST: DAppNodePackage-redis.nextcloud.dnp.dappnode.eth
+      MYSQL_HOST: DAppNodePackage-db.nextcloud.public.dappnode.eth
+      REDIS_HOST: DAppNodePackage-redis.nextcloud.public.dappnode.eth
       REDIS_HOST_PORT: "6379"
       APACHE_LISTEN_PORT: "8034"
       APACHE_PORT: "8034"
@@ -26,7 +26,7 @@ services:
   db:
     build:
       context: db
-    container_name: db.nextcloud.dnp.dappnode.eth
+    container_name: db.nextcloud.public.dappnode.eth
     volumes:
       - db-data:/var/lib/mysql
     restart: unless-stopped
@@ -38,7 +38,7 @@ services:
   redis:
     build:
       context: redis
-    container_name: redis.nextcloud.dnp.dappnode.eth
+    container_name: redis.nextcloud.public.dappnode.eth
     volumes:
       - redis-data:/data
     restart: unless-stopped
