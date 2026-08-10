@@ -22,3 +22,8 @@ RUN { \
 } > /usr/src/nextcloud/config/redis.config.php
 
 EXPOSE 8034
+
+COPY entrypoint.sh /custom-entrypoint.sh
+RUN chmod +x /custom-entrypoint.sh
+
+ENTRYPOINT ["/custom-entrypoint.sh"]
