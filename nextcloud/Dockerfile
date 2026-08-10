@@ -23,7 +23,7 @@ RUN { \
 
 EXPOSE 8034
 
-COPY entrypoint.sh /custom-entrypoint.sh
-RUN chmod +x /custom-entrypoint.sh
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
 
-ENTRYPOINT ["/custom-entrypoint.sh"]
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
