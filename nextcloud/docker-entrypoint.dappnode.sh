@@ -9,4 +9,7 @@ if [ -f /var/www/html/occ ]; then
     su -p www-data -s /bin/sh -c '/usr/local/bin/php /var/www/html/occ upgrade' || true
 fi
 
+if [ $# -eq 0 ]; then
+    set -- apache2-foreground
+fi
 exec /entrypoint.sh "$@"

@@ -30,3 +30,4 @@ EXPOSE 8034
 COPY docker-entrypoint.dappnode.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.dappnode.sh
 ENTRYPOINT ["docker-entrypoint.dappnode.sh"]
+CMD ["apache2-foreground"]
