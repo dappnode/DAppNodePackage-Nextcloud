@@ -8,7 +8,7 @@ on:
       - "v[0-9]+.[0-9]+.[0-9]+"
     paths-ignore:
       - "README.md"
-  workflow_dispatch: 
+  workflow_dispatch:
 
 jobs:
   build-test:
@@ -25,8 +25,51 @@ jobs:
     if: github.event_name == 'push'
     steps:
       - uses: actions/checkout@v6
-      - name: Publish
-        run: npx @dappnode/dappnodesdk publish patch --dappnode_team_preset
+
+      - name: Build package from manifest version
+        id: build
+        run: |
+          npx @dappnode/dappnodesdk build \
+            --provider https://api.ipfs.dappnode.io \
+            --upload_to ipfs \
+            --verbose
+          version=$(jq -r .version dappnode_package.json)
+          hash=$(jq -r --arg v "$version" '.[$v].hash' releases.json)
+          dnp_name=$(jq -r .name dappnode_package.json)
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "hash=$hash" >> "$GITHUB_OUTPUT"
+          echo "release_dir=build_${dnp_name}_${version}" >> "$GITHUB_OUTPUT"
+
+      - name: Create GitHub pre-release
+        run: |
+          version="${{ steps.build.outputs.version }}"
+          hash="${{ steps.build.outputs.hash }}"
+          release_dir="${{ steps.build.outputs.release_dir }}"
+          tag="v${version}-${{ github.run_number }}"
+
+          encoded_hash=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$hash', safe=''))")
+          install_link="http://my.dappnode/installer/public/${encoded_hash}"
+          publish_link="https://dappnode.github.io/sdk-publish/?r=nextcloud.public.dappnode.eth&v=${version}&h=${encoded_hash}"
+
+          printf '%s\n' "$hash" > "${release_dir}/content-hash"
+
+          cat > release_body.md <<EOF
+          ## Package versions
+
+          Package | Version | Hash | Install | Publish
+          --- | --- | --- | --- | ---
+          Nextcloud | ${version} | \`${hash}\` | [:inbox_tray:](${install_link}) | [:mega:](${publish_link})
+          EOF
+
+          mapfile -d '' assets < <(find "$release_dir" -maxdepth 1 -type f \
+            \( -name '*.yml' -o -name '*.yaml' -o -name '*.txz' -o -name 'dappnode_package.json' -o -name 'content-hash' -o -name '*.png' \) \
+            -print0)
+
+          gh release create "$tag" \
+            --prerelease \
+            --generate-notes \
+            --notes-file release_body.md \
+            --target "$GITHUB_SHA" \
+            "${assets[@]}"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DEVELOPER_ADDRESS: "0xB22981bA3FE1De2325935c91a3B717168fB86714"
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
