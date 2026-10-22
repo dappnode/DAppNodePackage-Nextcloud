@@ -14,7 +14,7 @@
     "ui": "http://nextcloud.dappnode:8034"
   },
   "mainService": "nextcloud",
-  "name": "nextcloud.public.dappnode.eth",
+  "name": "nextcloud.dnp.dappnode.eth",
   "requirements": {
     "minimumDiskSpace": "2GB"
   },

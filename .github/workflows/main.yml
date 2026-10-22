@@ -49,7 +49,7 @@ jobs:
 
           encoded_hash=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$hash', safe=''))")
           install_link="http://my.dappnode/installer/public/${encoded_hash}"
-          publish_link="https://dappnode.github.io/sdk-publish/?r=nextcloud.public.dappnode.eth&v=${version}&h=${encoded_hash}"
+          publish_link="https://dappnode.github.io/sdk-publish/?r=nextcloud.dnp.dappnode.eth&v=${version}&h=${encoded_hash}"
 
           printf '%s\n' "$hash" > "${release_dir}/content-hash"
 
