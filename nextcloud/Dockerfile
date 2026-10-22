@@ -22,3 +22,11 @@ RUN { \
 } > /usr/src/nextcloud/config/redis.config.php
 
 EXPOSE 8034
+
+# Self-healing entrypoint wrapper: runs `occ upgrade` on every boot before
+# delegating to the upstream Nextcloud entrypoint. This fixes the case where
+# a previous upgrade was interrupted after code sync but before DB migrations,
+# leaving the instance stuck in maintenance mode with matching versions.
+COPY docker-entrypoint.dappnode.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.dappnode.sh
+ENTRYPOINT ["docker-entrypoint.dappnode.sh"]
