@@ -4,7 +4,7 @@ services:
     build:
       context: nextcloud
       args:
-        UPSTREAM_VERSION: 33.0.10
+        UPSTREAM_VERSION: 33.0.11
     volumes:
       - nextcloud-data:/var/www/html
     restart: unless-stopped
